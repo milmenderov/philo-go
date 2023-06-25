@@ -1,13 +1,36 @@
 package table
 
-type TableStruct struct {
-	PhiloCount int
-	TimeDie    int
-	TimeEat    int
-	TimeSleep  int
-	MustEat    int
-	FullPhilo  int
-	StartTime  int64
-	Philos     []*PhiloStruct
-	Forks      []*bool
+import (
+	"fmt"
+	"gitlab.com/e.ilmenderov/philo-go/src/stRuct"
+	"strconv"
+)
+
+func TableMsg(tableStruct *stRuct.TableStruct) {
+	fmt.Println("This table have ", tableStruct.PhiloCount, " philosophers")
+}
+
+func ParseArgs(args []string) {
+
+	table := new(stRuct.TableStruct)
+	table.PhiloCount, _ = strconv.Atoi(args[1])
+	table.TimeDie, _ = strconv.Atoi(args[2])
+	table.TimeEat, _ = strconv.Atoi(args[3])
+	table.TimeSleep, _ = strconv.Atoi(args[4])
+	if len(args) == 6 {
+		table.MustEat, _ = strconv.Atoi(args[5])
+	}
+	table.Forks = append(table.Forks, make([]bool, table.PhiloCount)...)
+	table.Philos = append(table.Philos, make([]stRuct.PhiloStruct, table.PhiloCount)...)
+	for i := 0; i < table.PhiloCount; i++ {
+		table.Philos[i].Number = i
+	}
+	//table.Forks[4] = true
+	//for i := 0; i < table.PhiloCount; i++ {
+	//	if table.Forks[i] == false {
+	//		fmt.Println("Fork ", i, " is busy")
+	//	} else {
+	//		fmt.Println("Fork ", i, " is free")
+	//	}
+	//}
 }

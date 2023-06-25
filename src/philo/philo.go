@@ -1,15 +1,10 @@
 package philo
 
-ipmort (
+import (
 	"fmt"
-	"gitlab.com/e.ilmenderov/philo-go/src/table"
+	"gitlab.com/e.ilmenderov/philo-go/src/stRuct"
 )
 
-type PhiloStruct struct {
-	Number    int
-	State     int
-	EatCount  int
-	LeftFork  *bool
-	RightFork *bool
-	Table     *TableStruct
+func PhiloMsg(philoStruct *stRuct.PhiloStruct) {
+	fmt.Println("This is ", philoStruct.Number, "!")
 }
