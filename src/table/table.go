@@ -1,4 +1,4 @@
-package models
+package table
 
 type TableStruct struct {
 	PhiloCount int
@@ -10,13 +10,4 @@ type TableStruct struct {
 	StartTime  int64
 	Philos     []*PhiloStruct
 	Forks      []*bool
-}
-
-type PhiloStruct struct {
-	number    int
-	state     int
-	eatCount  int
-	leftFork  *bool
-	rightFork *bool
-	table     *TableStruct
 }
