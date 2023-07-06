@@ -10,7 +10,7 @@ func TableMsg(tableStruct *stRuct.TableStruct) {
 	fmt.Println("This table have ", tableStruct.PhiloCount, " philosophers")
 }
 
-func ParseArgs(args []string) {
+func ParseArgs(args []string) *stRuct.TableStruct {
 
 	table := new(stRuct.TableStruct)
 	table.PhiloCount, _ = strconv.Atoi(args[1])
@@ -25,12 +25,5 @@ func ParseArgs(args []string) {
 	for i := 0; i < table.PhiloCount; i++ {
 		table.Philos[i].Number = i
 	}
-	//table.Forks[4] = true
-	//for i := 0; i < table.PhiloCount; i++ {
-	//	if table.Forks[i] == false {
-	//		fmt.Println("Fork ", i, " is busy")
-	//	} else {
-	//		fmt.Println("Fork ", i, " is free")
-	//	}
-	//}
+	return table
 }
