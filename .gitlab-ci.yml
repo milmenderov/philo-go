@@ -1,0 +1,20 @@
+image: golang:latest
+
+variables:
+  PROGRAM_ARGS: "2 600 200 200 3"
+
+stages:
+  - lint
+  - test
+
+format:
+  stage: lint
+  script:
+    - go fmt $(go list ./... | grep -v /vendor/)
+
+compile:
+  stage: test
+  script:
+    - mkdir -p mybinaries
+    - go build -o mybinaries ./...
+    - ./mybinaries/philo-go $PROGRAM_ARGS
