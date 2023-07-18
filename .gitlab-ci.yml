@@ -28,3 +28,9 @@ test-empty_arg:
   script:
     - ./bin/philo-go
   when: manual
+
+test-words_arg:
+  extends: .test
+  script:
+    - ./bin/philo-go aasd 123 12 12 -3
+  when: manual
