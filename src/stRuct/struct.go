@@ -33,7 +33,6 @@ func track_time(table *TableStruct) int64 {
 
 func (philo *PhiloStruct) Eat() {
 
-	fmt.Println(philo.Table.TimeEat)
 	for *philo.LeftFork != false {
 	}
 	*philo.LeftFork = true
