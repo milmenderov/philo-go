@@ -36,18 +36,18 @@ func (philo *PhiloStruct) Eat() {
 	for *philo.LeftFork != false {
 	}
 	*philo.LeftFork = true
-	fmt.Println("TIME:", track_time(philo.Table), "Philo number:", philo.Number, "take left fork!", philo.LeftFork)
+	fmt.Println("TIME:", track_time(philo.Table), "Philo number:", philo.Number, "take left fork!")
 	for *philo.RightFork != false {
 	}
 	*philo.RightFork = true
-	fmt.Println("TIME:", track_time(philo.Table), "Philo number:", philo.Number, "take right fork!", philo.RightFork)
+	fmt.Println("TIME:", track_time(philo.Table), "Philo number:", philo.Number, "take right fork!")
 	fmt.Println("TIME:", track_time(philo.Table), "Philo number:", philo.Number, "eat")
 	time.Sleep(time.Duration(philo.Table.TimeEat) * time.Millisecond)
 	philo.EatCount++
 	*philo.RightFork = false
-	fmt.Println("TIME:", track_time(philo.Table), "Philo number:", philo.Number, "drop right fork!", philo.RightFork)
+	fmt.Println("TIME:", track_time(philo.Table), "Philo number:", philo.Number, "drop right fork!")
 	*philo.LeftFork = false
-	fmt.Println("TIME:", track_time(philo.Table), "Philo number:", philo.Number, "drop left fork!", philo.LeftFork)
+	fmt.Println("TIME:", track_time(philo.Table), "Philo number:", philo.Number, "drop left fork!")
 }
 
 func (philo *PhiloStruct) Sleep() {
