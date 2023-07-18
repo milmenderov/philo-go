@@ -12,9 +12,19 @@ format:
   script:
     - go fmt $(go list ./... | grep -v /vendor/)
 
-compile:
+.test:
   stage: test
+  before_script:
+    - mkdir -p bin
+    - go build -o bin ./...
+
+test-normal:
+  extends: .test
   script:
-    - mkdir -p mybinaries
-    - go build -o mybinaries ./...
-    - ./mybinaries/philo-go $PROGRAM_ARGS
+    - ./bin/philo-go $PROGRAM_ARGS
+
+test-empty_arg:
+  extends: .test
+  script:
+    - ./bin/philo-go
+  when: manual
