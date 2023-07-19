@@ -23,14 +23,16 @@ test-normal:
   script:
     - ./bin/philo-go $PROGRAM_ARGS
 
-test-empty_arg:
+test-error_arg:
   extends: .test
   script:
     - ./bin/philo-go
-  when: manual
-
-test-words_arg:
-  extends: .test
-  script:
-    - ./bin/philo-go aasd 123 12 12 -3
+    - ./bin/philo-go 1
+    - ./bin/philo-go -1
+    - ./bin/philo-go 0 200 50 50 3
+    - ./bin/philo-go asd 200 1 2 3
+    - ./bin/philo-go 1 1 2 3 -1
+    - ./bin/philo-go 1 1 2 3 0 2 1 2 3
+  timeout: 5m
+  allow_failure: true
   when: manual
