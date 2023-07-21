@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func prepear_philo(philo_tables *stRuct.TableStruct) {
+func even_philo(philo_tables *stRuct.TableStruct) {
 	for i := 0; i < philo_tables.PhiloCount; i++ {
 		philo_tables.Philos[i].Number = i
 		philo_tables.Philos[i].Table = philo_tables
@@ -20,7 +20,12 @@ func prepear_philo(philo_tables *stRuct.TableStruct) {
 			} else {
 				philo_tables.Philos[i].RightFork = &philo_tables.Forks[i+1]
 			}
-		} else {
+		}
+	}
+}
+func odd_philo(philo_tables *stRuct.TableStruct) {
+	for i := 0; i < philo_tables.PhiloCount; i++ {
+		if i%2 != 0 {
 			philo_tables.Philos[i].RightFork = &philo_tables.Forks[i]
 			if i+1 == philo_tables.PhiloCount {
 				philo_tables.Philos[i].LeftFork = &philo_tables.Forks[0]
@@ -46,7 +51,8 @@ func life(philo *stRuct.PhiloStruct) {
 func Run(args []string) {
 	fmt.Println("Run initialization whole app")
 	philo_tables := table.ParseArgs(args)
-	prepear_philo(philo_tables)
+	even_philo(philo_tables)
+	odd_philo(philo_tables)
 	philo_tables.StartTime = time.Now().UnixMilli()
 	for i := 0; i < philo_tables.PhiloCount; i++ {
 		go life(&philo_tables.Philos[i])
