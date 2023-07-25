@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"gitlab.com/e.ilmenderov/philo-go/src/stRuct"
 	"gitlab.com/e.ilmenderov/philo-go/src/table"
+	"time"
 )
 
 func even_philo(philo_tables *stRuct.TableStruct) {
@@ -69,14 +70,14 @@ func Run(args []string) {
 	philo_tables := table.ParseArgs(args)
 	even_philo(philo_tables)
 	odd_philo(philo_tables)
-	//philo_tables.StartTime = time.Now().UnixMilli()
-	//for i := 0; i < philo_tables.PhiloCount; i++ {
-	//	go life(&philo_tables.Philos[i])
-	//}
-	//for {
-	//	if philo_tables.MustEat == philo_tables.Philos[0].EatCount {
-	//		break
-	//	}
-	//}
+	philo_tables.StartTime = time.Now().UnixMilli()
+	for i := 0; i < philo_tables.PhiloCount; i++ {
+		go life(&philo_tables.Philos[i])
+	}
+	for {
+		if philo_tables.MustEat == philo_tables.Philos[0].EatCount {
+			break
+		}
+	}
 
 }
