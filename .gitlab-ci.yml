@@ -1,8 +1,5 @@
 image: golang:latest
 
-variables:
-  PROGRAM_ARGS: "2 600 200 200 3"
-
 stages:
   - lint
   - test
@@ -21,6 +18,7 @@ format:
 test-normal:
   extends: .test
   script:
+    - echo "Program args - $PROGRAM_ARGS"
     - ./bin/philo-go $PROGRAM_ARGS
 
 test-error_arg:

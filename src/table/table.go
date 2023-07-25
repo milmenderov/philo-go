@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"gitlab.com/e.ilmenderov/philo-go/src/stRuct"
 	"strconv"
+	"sync"
 )
 
 func TableMsg(tableStruct *stRuct.TableStruct) {
@@ -23,7 +24,7 @@ func ParseArgs(args []string) *stRuct.TableStruct {
 	if len(args) == 6 {
 		table.MustEat, _ = strconv.Atoi(args[5])
 	}
-	table.Forks = append(table.Forks, make([]bool, table.PhiloCount)...)
+	table.Forks = append(table.Forks, make([]sync.Mutex, table.PhiloCount)...)
 	table.Philos = append(table.Philos, make([]stRuct.PhiloStruct, table.PhiloCount)...)
 	for i := 0; i < table.PhiloCount; i++ {
 		table.Philos[i].Number = i

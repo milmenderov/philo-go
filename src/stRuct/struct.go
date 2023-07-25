@@ -2,6 +2,7 @@ package stRuct
 
 import (
 	"fmt"
+	"sync"
 	"time"
 )
 
@@ -14,15 +15,15 @@ type TableStruct struct {
 	FullPhilo  int
 	StartTime  int64
 	Philos     []PhiloStruct
-	Forks      []bool
+	Forks      []sync.Mutex
 }
 
 type PhiloStruct struct {
 	Number    int
 	State     int
 	EatCount  int
-	LeftFork  *bool
-	RightFork *bool
+	LeftFork  *sync.Mutex
+	RightFork *sync.Mutex
 	Table     *TableStruct
 }
 
@@ -33,20 +34,20 @@ func track_time(table *TableStruct) int64 {
 
 func (philo *PhiloStruct) Eat() {
 
-	for *philo.LeftFork != false {
-	}
-	*philo.LeftFork = true
+	philo.LeftFork.Lock()
 	fmt.Println("TIME:", track_time(philo.Table), "Philo number:", philo.Number, "take left fork!")
-	for *philo.RightFork != false {
-	}
-	*philo.RightFork = true
+
+	philo.RightFork.Lock()
 	fmt.Println("TIME:", track_time(philo.Table), "Philo number:", philo.Number, "take right fork!")
+
 	fmt.Println("TIME:", track_time(philo.Table), "Philo number:", philo.Number, "eat")
 	time.Sleep(time.Duration(philo.Table.TimeEat) * time.Millisecond)
 	philo.EatCount++
-	*philo.RightFork = false
+
+	philo.RightFork.Unlock()
 	fmt.Println("TIME:", track_time(philo.Table), "Philo number:", philo.Number, "drop right fork!")
-	*philo.LeftFork = false
+
+	philo.LeftFork.Unlock()
 	fmt.Println("TIME:", track_time(philo.Table), "Philo number:", philo.Number, "drop left fork!")
 }
 
