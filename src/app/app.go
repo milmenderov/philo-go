@@ -20,20 +20,17 @@ func even_philo(philo_tables *stRuct.TableStruct) {
 				//fmt.Println("rf - 0")
 			} else {
 				philo_tables.Philos[i].RightFork = &philo_tables.Forks[i+1]
-				//fmt.Println("rf - ", i+1)
 			}
-
 		}
 		//0 1 2 3 4 5 total - 6
 		//0 - 5р и 0л
-		//1 - 0л и 1р
+		//1 - 1л и 0р
 		//2 - 1р и 2л
-		//3 - 2л и 3р
+		//3 - 3л и 2р
 		//4 - 3р и 4л
-		//5 - 4л и 5р
+		//5 - 5л и 4р
 	}
 }
-
 func odd_philo(philo_tables *stRuct.TableStruct) {
 	for i := 0; i < philo_tables.PhiloCount; i++ {
 		if i%2 != 0 {
@@ -42,19 +39,14 @@ func odd_philo(philo_tables *stRuct.TableStruct) {
 			//fmt.Println("lf - ", i-1)
 			philo_tables.Philos[i].RightFork = &philo_tables.Forks[i]
 			//fmt.Println("rf - ", i)
-			//0 1 2 3 4 total - 5		0+4 1+2 3+4
-			//0 - l0 + r1
-			//1 - l0 + r1
-			//2 - l2 + r3
-			//3 - l2 + r3
-			//4 - l4 + r0
-			//0 1 2 3 4 5 total - 6		0+5 1+2 3+4
-			//0 - l0 + r1
-			//1 - l0 + r1 +
-			//2 - l2 + r3
-			//3 - l2 + r3 +
-			//4 - l4 + r5
-			//5 - l4 + r5 +
+			//0 1 2 3 4 5 total - 6
+
+			//0 - 5р и 0л
+			//1 - 1л и 0р
+			//2 - 1р и 2л
+			//3 - 3л и 2р
+			//4 - 3р и 4л
+			//5 - 5л и 4р
 		}
 	}
 }

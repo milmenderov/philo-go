@@ -3,6 +3,7 @@ package table
 import (
 	"fmt"
 	"gitlab.com/e.ilmenderov/philo-go/src/stRuct"
+	"math"
 	"strconv"
 	"sync"
 )
@@ -23,6 +24,9 @@ func ParseArgs(args []string) *stRuct.TableStruct {
 	table.TimeSleep = int64(tmp)
 	if len(args) == 6 {
 		table.MustEat, _ = strconv.Atoi(args[5])
+	} else {
+		fmt.Println("Бесконечный цикл")
+		table.MustEat = math.MaxInt64
 	}
 	table.Forks = append(table.Forks, make([]sync.Mutex, table.PhiloCount)...)
 	table.Philos = append(table.Philos, make([]stRuct.PhiloStruct, table.PhiloCount)...)
