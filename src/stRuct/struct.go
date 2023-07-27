@@ -8,7 +8,7 @@ import (
 
 type TableStruct struct {
 	PhiloCount int
-	TimeDie    int64
+	TimeLife   int64
 	TimeEat    int64
 	TimeSleep  int64
 	MustEat    int
@@ -22,6 +22,7 @@ type PhiloStruct struct {
 	Number    int
 	State     int
 	EatCount  int
+	TimeDie   int64
 	LeftFork  *sync.Mutex
 	RightFork *sync.Mutex
 	Table     *TableStruct
@@ -31,6 +32,12 @@ func track_time(table *TableStruct) int64 {
 	time_passed := time.Now().UnixMilli() - table.StartTime
 	return time_passed
 }
+func CheckDead(philo *PhiloStruct) bool {
+	if philo.TimeDie > track_time(philo.Table) {
+		return false
+	}
+	return true
+}
 
 func (philo *PhiloStruct) Eat() {
 
@@ -39,9 +46,10 @@ func (philo *PhiloStruct) Eat() {
 
 	philo.RightFork.Lock()
 	fmt.Println("TIME:", track_time(philo.Table), "Philo number:", philo.Number, "take right fork!")
-
+	// чек на смерть
 	fmt.Println("TIME:", track_time(philo.Table), "Philo number:", philo.Number, "eat")
 	time.Sleep(time.Duration(philo.Table.TimeEat) * time.Millisecond)
+	philo.TimeDie = track_time(philo.Table) + philo.Table.TimeLife
 	philo.EatCount++
 
 	philo.RightFork.Unlock()
@@ -52,6 +60,7 @@ func (philo *PhiloStruct) Eat() {
 }
 
 func (philo *PhiloStruct) Sleep() {
+	// чек на смерть
 	fmt.Println("TIME:", track_time(philo.Table), "Philo number:", philo.Number, "sleep")
 	time.Sleep(time.Duration(philo.Table.TimeSleep) * time.Millisecond)
 	fmt.Println("TIME:", track_time(philo.Table), "Philo number:", philo.Number, "thinking")

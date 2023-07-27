@@ -17,7 +17,7 @@ func ParseArgs(args []string) *stRuct.TableStruct {
 	table := new(stRuct.TableStruct)
 	table.PhiloCount, _ = strconv.Atoi(args[1])
 	tmp, _ := strconv.Atoi(args[2])
-	table.TimeDie = int64(tmp)
+	table.TimeLife = int64(tmp)
 	tmp, _ = strconv.Atoi(args[3])
 	table.TimeEat = int64(tmp)
 	tmp, _ = strconv.Atoi(args[4])
