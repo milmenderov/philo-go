@@ -8,7 +8,7 @@ import (
 )
 
 func InvalidArgs() {
-	if len(os.Args) != 6 || os.Args[1] == "" {
+	if len(os.Args) < 5 || len(os.Args) > 6 || os.Args[0] == "" {
 		fmt.Println("Invalid arguments")
 		os.Exit(0)
 	}
@@ -23,7 +23,9 @@ func InvalidArgs() {
 }
 
 func main() {
+
 	InvalidArgs()
+
 	//fmt.Println(os.Args)
 	app.Run(os.Args)
 
