@@ -52,6 +52,7 @@ func odd_philo(philo_tables *stRuct.TableStruct) {
 }
 
 func life(philo *stRuct.PhiloStruct) {
+	philo.TimeDie = stRuct.Track_time(philo.Table) + philo.Table.TimeLife
 	for {
 		if philo.Table.MustEat == philo.EatCount {
 			break
