@@ -51,13 +51,13 @@ func CheckDead(philo *PhiloStruct) {
 	if philo.Table.TimeEat >= livetime {
 		PrintAction(philo, "eating")
 		time.Sleep(time.Duration(philo.Table.TimeEat) * time.Millisecond)
-		livetime := philo.TimeDie - Track_time(philo.Table)
+		livetime = philo.TimeDie - Track_time(philo.Table)
 		fmt.Println("TIME:", timer, "TIMEDIE", philo.TimeDie, "Philo number:", philo.Number, "PhiloLive", livetime, "Dead Eat")
 		os.Exit(0)
 	} else if philo.Table.TimeSleep >= livetime {
 		PrintAction(philo, "sleeping")
 		time.Sleep(time.Duration(philo.Table.TimeSleep) * time.Millisecond)
-		livetime := philo.TimeDie - Track_time(philo.Table)
+		livetime = philo.TimeDie - Track_time(philo.Table)
 		fmt.Println("TIME:", timer, "TIMEDIE", philo.TimeDie, "Philo number:", philo.Number, "PhiloLive", livetime, "Dead Sleep")
 		os.Exit(0)
 	}
@@ -67,6 +67,8 @@ func (philo *PhiloStruct) Eat() {
 	if os.Args[1] == "1" {
 		philo.LeftFork.Lock()
 		PrintAction(philo, "take left fork!")
+		philo.LeftFork.Unlock()
+		PrintAction(philo, "drop left fork!")
 		philo.Sleep()
 		PrintAction(philo, "Dead")
 		os.Exit(0)
