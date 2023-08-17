@@ -31,6 +31,7 @@ func even_philo(philo_tables *stRuct.TableStruct) {
 		//5 - 5л и 4р
 	}
 }
+
 func odd_philo(philo_tables *stRuct.TableStruct) {
 	for i := 0; i < philo_tables.PhiloCount; i++ {
 		if i%2 != 0 {
@@ -55,6 +56,7 @@ func life(philo *stRuct.PhiloStruct) {
 	philo.TimeDie = stRuct.Track_time(philo.Table) + philo.Table.TimeLife
 	for {
 		if philo.Table.MustEat == philo.EatCount {
+			philo.Table.FullPhilo++
 			break
 		}
 		philo.Eat()
@@ -72,7 +74,7 @@ func Run(args []string) {
 		go life(&philo_tables.Philos[i])
 	}
 	for {
-		if philo_tables.MustEat == philo_tables.Philos[0].EatCount {
+		if philo_tables.MustEat == philo_tables.FullPhilo {
 			break
 		}
 	}

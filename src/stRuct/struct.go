@@ -62,6 +62,7 @@ func CheckDead(philo *PhiloStruct) {
 		os.Exit(0)
 	}
 }
+
 func (philo *PhiloStruct) Eat() {
 
 	if os.Args[1] == "1" {
