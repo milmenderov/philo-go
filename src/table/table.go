@@ -1,16 +1,11 @@
 package table
 
 import (
-	"fmt"
 	"gitlab.com/e.ilmenderov/philo-go/src/stRuct"
 	"math"
 	"strconv"
 	"sync"
 )
-
-func TableMsg(tableStruct *stRuct.TableStruct) {
-	fmt.Println("This table have ", tableStruct.PhiloCount, " philosophers")
-}
 
 func ParseArgs(args []string) *stRuct.TableStruct {
 
@@ -25,7 +20,6 @@ func ParseArgs(args []string) *stRuct.TableStruct {
 	if len(args) == 6 {
 		table.MustEat, _ = strconv.Atoi(args[5])
 	} else {
-		fmt.Println("Бесконечный цикл")
 		table.MustEat = math.MaxInt64
 	}
 	table.Forks = append(table.Forks, make([]sync.Mutex, table.PhiloCount)...)

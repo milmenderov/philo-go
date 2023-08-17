@@ -23,7 +23,5 @@ func InvalidArgs() {
 
 func main() {
 	InvalidArgs()
-	//fmt.Println(os.Args)
 	app.Run(os.Args)
-
 }
