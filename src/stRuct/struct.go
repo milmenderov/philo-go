@@ -12,8 +12,8 @@ type TableStruct struct {
 	TimeLife   int64
 	TimeEat    int64
 	TimeSleep  int64
-	MustEat    int
 	FullPhilo  int
+	MustEat    int
 	StartTime  int64
 	PrintMutex sync.Mutex
 	Philos     []PhiloStruct

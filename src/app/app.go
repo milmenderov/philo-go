@@ -53,9 +53,8 @@ func Run(args []string) {
 		go life(&philo_tables.Philos[i])
 	}
 	for {
-		if philo_tables.MustEat == philo_tables.FullPhilo {
+		if philo_tables.FullPhilo == philo_tables.PhiloCount {
 			break
 		}
 	}
-
 }
