@@ -1,0 +1,16 @@
+name: test-program
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: start
+        run: echo ===START TEST===  && pwd && ls -la
+      - name: end
+        run: echo ====END TEST====
+  
