@@ -10,7 +10,19 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: start
-        run: echo ===START TEST===  && pwd && ls -la
+        run: echo ===START TEST===  
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+      - name: Lint
+        run: go fmt $(go list ./... | grep -v /vendor/)
+      - name: Build philos
+        run: mkdir -p bin && go build -o bin ./...
+      - name: Test
+        run: ./bin/philo-go 5 610 200 200 5
       - name: end
-        run: echo ====END TEST====
+        run: pwd && ls -l && echo ====END TEST====
   
