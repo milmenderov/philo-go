@@ -22,7 +22,20 @@ jobs:
       - name: Build philos
         run: mkdir -p bin && go build -o bin ./...
       - name: Test
-        run: ./bin/philo-go 5 610 200 200 5
+        run: |
+          echo === Test invalid args ===
+          ./bin/philo-go
+          ./bin/philo-go 5 610 200 200 5 1 3
+          ./bin/philo-go -5 =610 -200 -200 5
+          ./bin/philo-go asd 610 200 200 10
+          ./bin/philo-go 5 610 200
+          echo === Philo should die ===
+          ./bin/philo-go 1 600 200 200
+          ./bin/philo-go 2 610 300 320 5
+          ./bin/philo-go 3 610 310 301 5
+          echo ==== Normal RUNS ====
+          ./bin/philo-go 2 410 200 200 3
+          ./bin/philo-go 5 610 200 200 5
       - name: end
         run: pwd && ls -l && echo ====END TEST====
   
